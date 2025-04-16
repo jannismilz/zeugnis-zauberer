@@ -27,6 +27,7 @@ class SchoolClassTypeResource extends Resource
                     ->maxLength(255)
                     ->unique()
                     ->columnSpanFull()
+                    ->required()
             ]);
     }
 
@@ -34,7 +35,7 @@ class SchoolClassTypeResource extends Resource
     {
         return $table
             ->columns([
-               TextColumn::make('name')
+                TextColumn::make('name')
                     ->searchable(),
             ])
             ->actions([
