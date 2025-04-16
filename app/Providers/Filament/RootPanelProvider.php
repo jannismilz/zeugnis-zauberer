@@ -51,6 +51,11 @@ class RootPanelProvider extends PanelProvider
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
             ])
+            ->navigationGroups([
+                'Noten und Prüfungen',
+                'Administration',
+                'Parameter',
+            ])
             ->authMiddleware([
                 Authenticate::class,
             ]);

@@ -17,7 +17,7 @@ class SubjectTypeResource extends Resource
     protected static ?string $model = SubjectType::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    protected static ?string $navigationGroup = 'Administration';
+    protected static ?string $navigationGroup = 'Parameter';
 
     public static function form(Form $form): Form
     {
