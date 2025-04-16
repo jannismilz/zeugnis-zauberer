@@ -2,7 +2,6 @@
 
 namespace App\Filament\Resources\AssignmentTypeResource\Pages;
 
-use App\Filament\Resources\AssignmentTypeResource;
 use App\Filament\Resources\FinalGradeTypeResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
