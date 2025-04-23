@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('password');
             $table->timestamp("apprentice_start")->nullable();
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
         });
 
@@ -67,6 +68,7 @@ return new class extends Migration
         Schema::create('assignment_types', function (Blueprint $table) {
             $table->id();
             $table->string("name");
+            $table->softDeletes();
             $table->timestamps();
         });
 
@@ -85,6 +87,7 @@ return new class extends Migration
         Schema::create('final_grade_types', function (Blueprint $table) {
             $table->id();
             $table->string("name");
+            $table->softDeletes();
             $table->timestamps();
         });
 
@@ -106,12 +109,14 @@ return new class extends Migration
             $table->id();
             $table->foreignId("school_class_type_id");
             $table->string("name");
+            $table->softDeletes();
             $table->timestamps();
         });
 
         Schema::create('school_class_types', function (Blueprint $table) {
             $table->id();
             $table->string("name");
+            $table->softDeletes();
             $table->timestamps();
         });
 
@@ -132,12 +137,14 @@ return new class extends Migration
             $table->id();
             $table->foreignId("subject_type_id");
             $table->string("name");
+            $table->softDeletes();
             $table->timestamps();
         });
 
         Schema::create('subject_types', function (Blueprint $table) {
             $table->id();
             $table->string("name");
+            $table->softDeletes();
             $table->timestamps();
         });
     }
