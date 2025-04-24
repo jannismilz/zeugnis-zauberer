@@ -25,6 +25,8 @@ class LocationResource extends BaseResource
     
     protected static ?string $pluralModelLabel = 'Standorte';
 
+    protected static ?int $navigationSort = 10;
+
     public static function form(Form $form): Form
     {
         return $form
