@@ -14,6 +14,13 @@ class User extends Authenticatable implements FilamentUser
 {
     use HasFactory;
     use SoftDeletes;
+    
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'apprentice_start',
+    ];
 
     protected $hidden = [
         'password',
