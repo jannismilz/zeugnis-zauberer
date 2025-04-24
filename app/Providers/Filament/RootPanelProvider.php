@@ -56,7 +56,7 @@ class RootPanelProvider extends PanelProvider
                 DispatchServingFilamentEvent::class,
             ])
             ->navigationGroups([
-                'Noten und Prüfungen',
+                'Grades',
                 'Administration',
                 'Parameter',
             ])

@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource\RelationManagers;
+use App\Models\Location;
 use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -20,7 +21,7 @@ class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-users';
 
     protected static ?string $navigationGroup = 'Administration';
 
@@ -36,6 +37,10 @@ class UserResource extends Resource
                     ->required()
                     ->maxLength(255)
                     ->unique(ignoreRecord: true),
+                Forms\Components\Select::make('location_id')
+                    ->label('Location')
+                    ->options(Location::all()->pluck('name', 'id'))
+                    ->searchable(),
                 Forms\Components\DateTimePicker::make('apprentice_start')
                     ->label('Apprenticeship Start Date'),
                 Forms\Components\TextInput::make('password')
@@ -52,6 +57,10 @@ class UserResource extends Resource
         return $table
             ->columns([
                 TextColumn::make("name")
+                    ->searchable(),
+                TextColumn::make("location.name")
+                    ->label('Location')
+                    ->sortable()
                     ->searchable(),
                 TextColumn::make("apprenticeYear")
                     ->numeric()

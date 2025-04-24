@@ -2,8 +2,10 @@
 
 namespace App\Forms\Components;
 
+use App\Models\Location;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Joaopaulolndev\FilamentEditProfile\Livewire\EditProfileForm;
@@ -14,7 +16,7 @@ class ExtendedEditProfileForm extends EditProfileForm
     {
         parent::mount();
 
-        $this->form->fill($this->user->only('name', 'email', 'apprentice_start'));
+        $this->form->fill($this->user->only('name', 'email', 'apprentice_start', 'location_id'));
     }
 
     public function form(Form $form): Form
@@ -34,6 +36,11 @@ class ExtendedEditProfileForm extends EditProfileForm
                             ->email()
                             ->required()
                             ->unique($this->userClass, ignorable: $this->user),
+                            
+                        Select::make('location_id')
+                            ->label('Location')
+                            ->options(Location::all()->pluck('name', 'id'))
+                            ->searchable(),
                             
                         DatePicker::make('apprentice_start')
                             ->label('Apprenticeship Start Date')

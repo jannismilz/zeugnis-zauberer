@@ -7,6 +7,7 @@ use Carbon\Traits\Creator;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -20,6 +21,7 @@ class User extends Authenticatable implements FilamentUser
         'email',
         'password',
         'apprentice_start',
+        'location_id',
     ];
 
     protected $hidden = [
@@ -43,5 +45,10 @@ class User extends Authenticatable implements FilamentUser
 
     public function getApprenticeYearAttribute(): int {
         return $this->apprentice_start->diffInYears(Carbon::now()) + 1;
+    }
+    
+    public function location(): BelongsTo
+    {
+        return $this->belongsTo(Location::class);
     }
 }
