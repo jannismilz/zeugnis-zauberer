@@ -20,6 +20,7 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Joaopaulolndev\FilamentEditProfile\FilamentEditProfilePlugin;
 use Filament\Navigation\MenuItem;
 use Joaopaulolndev\FilamentEditProfile\Pages\EditProfilePage;
+use App\Forms\Components\ExtendedEditProfileForm;
 
 class RootPanelProvider extends PanelProvider
 {
@@ -70,7 +71,15 @@ class RootPanelProvider extends PanelProvider
             ])
             ->plugins([
                 FilamentEditProfilePlugin::make()
-                    ->shouldRegisterNavigation(false),
+                    ->slug('me')
+                    ->setTitle('My Profile')
+                    ->shouldRegisterNavigation(false)
+                    ->shouldShowBrowserSessionsForm()
+                    ->shouldShowAvatarForm(false)
+                    ->shouldShowEditProfileForm(false)
+                    ->customProfileComponents([
+                        ExtendedEditProfileForm::class
+                    ]),
             ]);
     }
 }

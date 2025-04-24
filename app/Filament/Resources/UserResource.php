@@ -63,7 +63,7 @@ class UserResource extends Resource
                     ->visible(function (Model $record, Collection $selectedRecords) {
                         return $record->id === auth()->user()->id;
                     })
-                    ->url(fn (Model $record) => EditProfilePage::getUrl()),
+                    ->url('/me'),
             ])
             ->bulkActions([
                 /* Tables\Actions\BulkActionGroup::make([
