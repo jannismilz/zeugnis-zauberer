@@ -5,6 +5,7 @@ namespace App\Providers\Filament;
 use App\Filament\Resources\AssignmentResource;
 use App\Filament\Resources\FinalGradeResource;
 use App\Filament\Resources\GradeResource;
+use App\Filament\Auth\Login;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -33,7 +34,7 @@ class RootPanelProvider extends PanelProvider
             ->default()
             ->id('root')
             ->path('')
-            ->login()
+            ->login(Login::class)
             ->colors([
                 'primary' => Color::Amber,
             ])

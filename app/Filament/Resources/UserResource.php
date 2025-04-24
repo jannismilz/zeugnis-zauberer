@@ -37,19 +37,17 @@ class UserResource extends BaseResource
                     ->label('Name')
                     ->required()
                     ->maxLength(255),
+                Forms\Components\TextInput::make('username')
+                    ->label('Benutzername')
+                    ->required()
+                    ->maxLength(255)
+                    ->unique(ignoreRecord: true),
                 Forms\Components\TextInput::make('email')
                     ->label('E-Mail')
                     ->email()
                     ->required()
                     ->maxLength(255)
                     ->unique(ignoreRecord: true),
-                Forms\Components\Select::make('location_id')
-                    ->label('Standort')
-                    ->options(Location::all()->pluck('name', 'id'))
-                    ->searchable()
-                    ->native(false),
-                Forms\Components\DateTimePicker::make('apprentice_start')
-                    ->label('Lehrbeginn'),
                 Forms\Components\TextInput::make('password')
                     ->label('Passwort')
                     ->password()
@@ -57,6 +55,17 @@ class UserResource extends BaseResource
                     ->required(fn (string $operation): bool => $operation === 'create')
                     ->maxLength(255)
                     ->dehydrated(fn ($state) => filled($state)),
+                Forms\Components\Select::make('location_id')
+                    ->label('Standort')
+                    ->options(Location::all()->pluck('name', 'id'))
+                    ->searchable()
+                    ->native(false)
+                    ->required(),
+                Forms\Components\DatePicker::make('apprentice_start')
+                    ->label('Lehrbeginn')
+                    ->displayFormat('d.m.Y')
+                    ->native(false),
+                
             ]);
     }
 
@@ -66,6 +75,9 @@ class UserResource extends BaseResource
             ->columns([
                 TextColumn::make("name")
                     ->label('Name')
+                    ->searchable(),
+                TextColumn::make("username")
+                    ->label('Benutzername')
                     ->searchable(),
                 TextColumn::make("location.name")
                     ->label('Standort')

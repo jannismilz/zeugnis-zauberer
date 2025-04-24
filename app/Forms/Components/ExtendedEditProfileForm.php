@@ -16,7 +16,7 @@ class ExtendedEditProfileForm extends EditProfileForm
     {
         parent::mount();
 
-        $this->form->fill($this->user->only('name', 'email', 'apprentice_start', 'location_id'));
+        $this->form->fill($this->user->only('name', 'username', 'email', 'apprentice_start', 'location_id'));
     }
 
     public function form(Form $form): Form
@@ -29,8 +29,14 @@ class ExtendedEditProfileForm extends EditProfileForm
                     ->schema([
                         TextInput::make('name')
                             ->label('Name')
-                            ->required(),
+                            ->required()
+                            ->maxLength(255),
                             
+                        TextInput::make('username')
+                            ->label('Benutzername')
+                            ->required()
+                            ->maxLength(255)
+                            ->unique(ignoreRecord: true),
                         TextInput::make('email')
                             ->label(__('filament-edit-profile::default.email'))
                             ->email()
@@ -38,13 +44,13 @@ class ExtendedEditProfileForm extends EditProfileForm
                             ->unique($this->userClass, ignorable: $this->user),
                             
                         Select::make('location_id')
-                            ->label('Location')
+                            ->label('Standort')
                             ->options(Location::all()->pluck('name', 'id'))
                             ->searchable()
                             ->native(false),
                             
                         DatePicker::make('apprentice_start')
-                            ->label('Apprenticeship Start Date')
+                            ->label('Lehrbeginn')
                             ->displayFormat('d.m.Y')
                             ->native(false),
                     ]),

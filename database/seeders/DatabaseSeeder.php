@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
         $users = [
             User::create([
                 'name' => 'Zeugnis Zauberer',
+                'username' => 'zauberer',
                 'email' => 'zauberer@bsiag.com',
                 'password' => Hash::make('test1234'),
                 'apprentice_start' => Carbon::parse("2022-08-01"),
@@ -40,6 +41,7 @@ class DatabaseSeeder extends Seeder
             ]),
             User::create([
                 'name' => 'Max Muster',
+                'username' => 'max.muster',
                 'email' => 'max.muster@bsiag.com',
                 'password' => Hash::make('test1234'),
                 'apprentice_start' => Carbon::parse("2023-08-01"),
@@ -47,6 +49,7 @@ class DatabaseSeeder extends Seeder
             ]),
             User::create([
                 'name' => 'Anna Schmidt',
+                'username' => 'anna.schmidt',
                 'email' => 'anna.schmidt@bsiag.com',
                 'password' => Hash::make('test1234'),
                 'apprentice_start' => Carbon::parse("2024-08-01"),
@@ -54,6 +57,7 @@ class DatabaseSeeder extends Seeder
             ]),
             User::create([
                 'name' => 'Visitor User',
+                'username' => 'visitor',
                 'email' => 'visitor@bsiag.com',
                 'password' => Hash::make('test1234'),
                 'apprentice_start' => null,
