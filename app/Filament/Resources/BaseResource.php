@@ -29,9 +29,9 @@ abstract class BaseResource extends Resource
             return true;
         }
         
-        // For non-apprentice users, only show resources in the Grades group
+        // For non-apprentice users, only show resources in the Noten group
         $navigationGroup = static::getNavigationGroup();
         
-        return $navigationGroup === 'Grades';
+        return $navigationGroup === 'Noten';
     }
 }

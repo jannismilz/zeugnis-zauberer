@@ -20,6 +20,7 @@ class SchoolClassResource extends BaseResource
 {
     protected static ?string $model = SchoolClass::class;
 
+    protected static ?string $navigationLabel = 'Schulklassen';
     protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
     protected static ?string $navigationGroup = 'Administration';
 

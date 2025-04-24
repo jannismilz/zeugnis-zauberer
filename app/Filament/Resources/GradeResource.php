@@ -20,7 +20,7 @@ class GradeResource extends BaseResource
 
     protected static ?string $navigationIcon = 'heroicon-o-document-check';
 
-    protected static ?string $navigationGroup = 'Grades';
+    protected static ?string $navigationGroup = 'Noten';
 
     protected static ?int $navigationSort = 20;
 
@@ -31,20 +31,20 @@ class GradeResource extends BaseResource
                 Forms\Components\Grid::make(2)
                             ->schema([
                                 Forms\Components\Select::make('user_id')
-                                    ->label('Student')
+                                    ->label('Lernender')
                                     ->options(User::all()->pluck('name', 'id'))
                                     ->searchable()
                                     ->native(false)
                                     ->required(),
                                 Forms\Components\Select::make('assignment_id')
-                                    ->label('Assignment')
+                                    ->label('Prüfung')
                                     ->options(Assignment::all()->pluck('name', 'id'))
                                     ->searchable()
                                     ->native(false)
                                     ->required(),
                             ]),
                         Forms\Components\TextInput::make('grade')
-                            ->label('Grade')
+                            ->label('Note')
                             ->numeric()
                             ->required()
                             ->step(0.1)
@@ -58,18 +58,19 @@ class GradeResource extends BaseResource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('user.name')
-                    ->label('Student')
+                    ->label('Lernender')
                     ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('assignment.name')
-                    ->label('Assignment')
+                    ->label('Prüfung')
                     ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('assignment.subject.name')
-                    ->label('Subject')
+                    ->label('Fach')
                     ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('grade')
+                    ->label('Note')
                     ->numeric(1)
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
@@ -83,11 +84,11 @@ class GradeResource extends BaseResource
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('user_id')
-                    ->label('Student')
+                    ->label('Lernender')
                     ->options(User::all()->pluck('name', 'id'))
                     ->native(false),
                 Tables\Filters\SelectFilter::make('assignment_id')
-                    ->label('Assignment')
+                    ->label('Prüfung')
                     ->options(Assignment::all()->pluck('name', 'id'))
                     ->native(false),
             ])
@@ -100,13 +101,6 @@ class GradeResource extends BaseResource
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
-    }
-
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
     }
 
     public static function getPages(): array

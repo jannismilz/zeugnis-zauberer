@@ -59,7 +59,7 @@ class RootPanelProvider extends PanelProvider
                 DispatchServingFilamentEvent::class,
             ])
             ->navigationGroups([
-                'Grades',
+                'Noten',
                 'Administration',
                 'Parameter',
             ])
@@ -75,7 +75,7 @@ class RootPanelProvider extends PanelProvider
             ->plugins([
                 FilamentEditProfilePlugin::make()
                     ->slug('me')
-                    ->setTitle('My Profile')
+                    ->setTitle('Mein Profil')
                     ->shouldRegisterNavigation(false)
                     ->shouldShowBrowserSessionsForm()
                     ->shouldShowAvatarForm(false)

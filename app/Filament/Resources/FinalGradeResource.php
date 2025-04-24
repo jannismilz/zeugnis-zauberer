@@ -21,7 +21,9 @@ class FinalGradeResource extends BaseResource
 
     protected static ?string $navigationIcon = 'heroicon-o-trophy';
 
-    protected static ?string $navigationGroup = 'Grades';
+    protected static ?string $navigationLabel = 'Zeugnisnoten';
+
+    protected static ?string $navigationGroup = 'Noten';
 
     protected static ?int $navigationSort = 30;
 
@@ -32,19 +34,19 @@ class FinalGradeResource extends BaseResource
                 Forms\Components\Grid::make(3)
                             ->schema([
                                 Forms\Components\Select::make('user_id')
-                                    ->label('Student')
+                                    ->label('Lernender')
                                     ->options(User::all()->pluck('name', 'id'))
                                     ->searchable()
                                     ->native(false)
                                     ->required(),
                                 Forms\Components\Select::make('subject_id')
-                                    ->label('Subject')
+                                    ->label('Fach')
                                     ->options(Subject::all()->pluck('name', 'id'))
                                     ->searchable()
                                     ->native(false)
                                     ->required(),
                                 Forms\Components\Select::make('final_grade_type_id')
-                                    ->label('Final Grade Type')
+                                    ->label('Typ')
                                     ->options(FinalGradeType::all()->pluck('name', 'id'))
                                     ->searchable()
                                     ->native(false)
@@ -53,14 +55,14 @@ class FinalGradeResource extends BaseResource
                         Forms\Components\Grid::make(2)
                             ->schema([
                                 Forms\Components\TextInput::make('grade')
-                                    ->label('Grade')
+                                    ->label('Note')
                                     ->numeric()
                                     ->required()
                                     ->step(0.1)
                                     ->minValue(1.0)
                                     ->maxValue(6.0),
                                 Forms\Components\TextInput::make('weight')
-                                    ->label('Weight')
+                                    ->label('Gewichtung')
                                     ->numeric()
                                     ->required()
                                     ->default(1.0)
@@ -76,21 +78,23 @@ class FinalGradeResource extends BaseResource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('user.name')
-                    ->label('Student')
+                    ->label('Lernender')
                     ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('subject.name')
-                    ->label('Subject')
+                    ->label('Fach')
                     ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('finalGradeType.name')
-                    ->label('Final Grade Type')
+                    ->label('Typ')
                     ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('grade')
+                    ->label('Note')
                     ->numeric(1)
                     ->sortable(),
                 Tables\Columns\TextColumn::make('weight')
+                    ->label('Gewichtung')
                     ->numeric(1)
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
@@ -104,15 +108,15 @@ class FinalGradeResource extends BaseResource
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('user_id')
-                    ->label('Student')
+                    ->label('Lernender')
                     ->options(User::all()->pluck('name', 'id'))
                     ->native(false),
                 Tables\Filters\SelectFilter::make('subject_id')
-                    ->label('Subject')
+                    ->label('Fach')
                     ->options(Subject::all()->pluck('name', 'id'))
                     ->native(false),
                 Tables\Filters\SelectFilter::make('final_grade_type_id')
-                    ->label('Final Grade Type')
+                    ->label('Typ')
                     ->options(FinalGradeType::all()->pluck('name', 'id'))
                     ->native(false),
             ])
@@ -125,13 +129,6 @@ class FinalGradeResource extends BaseResource
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
-    }
-
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
     }
 
     public static function getPages(): array

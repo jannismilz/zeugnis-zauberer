@@ -16,6 +16,7 @@ class AssignmentTypeResource extends BaseResource
 {
     protected static ?string $model = AssignmentType::class;
 
+    protected static ?string $navigationLabel = 'Prüfungstypen';
     protected static ?string $navigationIcon = 'heroicon-o-clipboard-document-list';
     protected static ?string $navigationGroup = 'Parameter';
 
@@ -24,6 +25,7 @@ class AssignmentTypeResource extends BaseResource
         return $form
             ->schema([
                 TextInput::make('name')
+                    ->label('Name')
                     ->maxLength(255)
                     ->unique()
                     ->columnSpanFull()

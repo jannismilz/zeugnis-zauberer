@@ -17,6 +17,8 @@ class LocationResource extends BaseResource
 
     protected static ?string $navigationIcon = 'heroicon-o-map-pin';
 
+    protected static ?string $navigationLabel = 'Standorte';
+
     protected static ?string $navigationGroup = 'Parameter';
 
     public static function form(Form $form): Form
@@ -24,6 +26,7 @@ class LocationResource extends BaseResource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
+                    ->label('Name')
                     ->required()
                     ->maxLength(255),
             ]);
@@ -44,9 +47,6 @@ class LocationResource extends BaseResource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->filters([
-                //
-            ])
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
@@ -56,13 +56,6 @@ class LocationResource extends BaseResource
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
-    }
-
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
     }
 
     public static function getPages(): array

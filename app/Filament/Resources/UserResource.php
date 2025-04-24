@@ -30,21 +30,24 @@ class UserResource extends BaseResource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
+                    ->label('Name')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('email')
+                    ->label('E-Mail')
                     ->email()
                     ->required()
                     ->maxLength(255)
                     ->unique(ignoreRecord: true),
                 Forms\Components\Select::make('location_id')
-                    ->label('Location')
+                    ->label('Standort')
                     ->options(Location::all()->pluck('name', 'id'))
                     ->searchable()
                     ->native(false),
                 Forms\Components\DateTimePicker::make('apprentice_start')
-                    ->label('Apprenticeship Start Date'),
+                    ->label('Lehrbeginn'),
                 Forms\Components\TextInput::make('password')
+                    ->label('Passwort')
                     ->password()
                     ->dehydrateStateUsing(fn ($state) => !empty($state) ? Hash::make($state) : null)
                     ->required(fn (string $operation): bool => $operation === 'create')
@@ -58,12 +61,14 @@ class UserResource extends BaseResource
         return $table
             ->columns([
                 TextColumn::make("name")
+                    ->label('Name')
                     ->searchable(),
                 TextColumn::make("location.name")
-                    ->label('Location')
+                    ->label('Standort')
                     ->sortable()
                     ->searchable(),
                 TextColumn::make("apprenticeYear")
+                    ->label('Lehrjahr')
                     ->numeric()
                     ->sortable()
             ])
@@ -74,19 +79,7 @@ class UserResource extends BaseResource
                         return $record->id === auth()->user()->id;
                     })
                     ->url('/me'),
-            ])
-            ->bulkActions([
-                /* Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]), */
             ]);
-    }
-
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
     }
 
     public static function getPages(): array

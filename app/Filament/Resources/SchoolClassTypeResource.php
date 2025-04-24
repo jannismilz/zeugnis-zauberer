@@ -17,6 +17,7 @@ class SchoolClassTypeResource extends BaseResource
     protected static ?string $model = SchoolClassType::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
+    protected static ?string $navigationLabel = 'Schulklassentypen';
     protected static ?string $navigationGroup = 'Parameter';
 
     public static function form(Form $form): Form
@@ -24,6 +25,7 @@ class SchoolClassTypeResource extends BaseResource
         return $form
             ->schema([
                 TextInput::make('name')
+                    ->label('Name')
                     ->maxLength(255)
                     ->unique()
                     ->columnSpanFull()

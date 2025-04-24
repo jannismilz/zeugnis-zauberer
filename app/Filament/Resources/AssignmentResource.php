@@ -21,7 +21,9 @@ class AssignmentResource extends BaseResource
 
     protected static ?string $navigationIcon = 'heroicon-o-clipboard-document-list';
 
-    protected static ?string $navigationGroup = 'Grades';
+    protected static ?string $navigationLabel = 'Prüfungen';
+
+    protected static ?string $navigationGroup = 'Noten';
 
     protected static ?int $navigationSort = 10;
 
@@ -32,19 +34,19 @@ class AssignmentResource extends BaseResource
                 Forms\Components\Grid::make(3)
                             ->schema([
                                 Forms\Components\Select::make('school_class_id')
-                                    ->label('School Class')
+                                    ->label('Klasse')
                                     ->options(SchoolClass::all()->pluck('name', 'id'))
                                     ->searchable()
                                     ->native(false)
                                     ->required(),
                                 Forms\Components\Select::make('subject_id')
-                                    ->label('Subject')
+                                    ->label('Fach')
                                     ->options(Subject::all()->pluck('name', 'id'))
                                     ->searchable()
                                     ->native(false)
                                     ->required(),
                                 Forms\Components\Select::make('assignment_type_id')
-                                    ->label('Assignment Type')
+                                    ->label('Typ')
                                     ->options(AssignmentType::all()->pluck('name', 'id'))
                                     ->searchable()
                                     ->native(false)
@@ -53,10 +55,11 @@ class AssignmentResource extends BaseResource
                         Forms\Components\Grid::make(2)
                             ->schema([
                                 Forms\Components\TextInput::make('name')
+                                    ->label('Name')
                                     ->required()
                                     ->maxLength(255),
                                 Forms\Components\TextInput::make('weight')
-                                    ->label('Weight')
+                                    ->label('Gewichtung')
                                     ->numeric()
                                     ->required()
                                     ->default(1.0)
@@ -72,18 +75,19 @@ class AssignmentResource extends BaseResource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('schoolClass.name')
-                    ->label('School Class')
+                    ->label('Klasse')
                     ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('subject.name')
-                    ->label('Subject')
+                    ->label('Fach')
                     ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('assignmentType.name')
-                    ->label('Assignment Type')
+                    ->label('Typ')
                     ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('name')
+                    ->label('Name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('weight')
                     ->numeric()
@@ -99,15 +103,15 @@ class AssignmentResource extends BaseResource
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('school_class_id')
-                    ->label('School Class')
+                    ->label('Klasse')
                     ->options(SchoolClass::all()->pluck('name', 'id'))
                     ->native(false),
                 Tables\Filters\SelectFilter::make('subject_id')
-                    ->label('Subject')
+                    ->label('Fach')
                     ->options(Subject::all()->pluck('name', 'id'))
                     ->native(false),
                 Tables\Filters\SelectFilter::make('assignment_type_id')
-                    ->label('Assignment Type')
+                    ->label('Typ')
                     ->options(AssignmentType::all()->pluck('name', 'id'))
                     ->native(false),
             ])
@@ -120,13 +124,6 @@ class AssignmentResource extends BaseResource
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
-    }
-
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
     }
 
     public static function getPages(): array

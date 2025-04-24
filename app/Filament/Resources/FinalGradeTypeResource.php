@@ -17,6 +17,7 @@ class FinalGradeTypeResource extends BaseResource
     protected static ?string $model = FinalGradeType::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-trophy';
+    protected static ?string $navigationLabel = 'Zeugnisnotentypen';
     protected static ?string $navigationGroup = 'Parameter';
 
     public static function form(Form $form): Form
@@ -24,6 +25,7 @@ class FinalGradeTypeResource extends BaseResource
         return $form
             ->schema([
                 TextInput::make('name')
+                    ->label('Name')
                     ->maxLength(255)
                     ->unique()
                     ->columnSpanFull()
