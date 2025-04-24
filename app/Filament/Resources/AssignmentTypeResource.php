@@ -6,13 +6,13 @@ use App\Filament\Resources\AssignmentTypeResource\Pages;
 use App\Models\AssignmentType;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use App\Filament\Resources\BaseResource;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class AssignmentTypeResource extends Resource
+class AssignmentTypeResource extends BaseResource
 {
     protected static ?string $model = AssignmentType::class;
 

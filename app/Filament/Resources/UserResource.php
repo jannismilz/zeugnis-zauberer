@@ -8,7 +8,7 @@ use App\Models\Location;
 use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use App\Filament\Resources\BaseResource;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
@@ -17,7 +17,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
 use Joaopaulolndev\FilamentEditProfile\Pages\EditProfilePage;
 
-class UserResource extends Resource
+class UserResource extends BaseResource
 {
     protected static ?string $model = User::class;
 
@@ -40,7 +40,8 @@ class UserResource extends Resource
                 Forms\Components\Select::make('location_id')
                     ->label('Location')
                     ->options(Location::all()->pluck('name', 'id'))
-                    ->searchable(),
+                    ->searchable()
+                    ->native(false),
                 Forms\Components\DateTimePicker::make('apprentice_start')
                     ->label('Apprenticeship Start Date'),
                 Forms\Components\TextInput::make('password')

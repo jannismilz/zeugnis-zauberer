@@ -51,4 +51,9 @@ class User extends Authenticatable implements FilamentUser
     {
         return $this->belongsTo(Location::class);
     }
+    
+    public function isApprentice(): bool
+    {
+        return $this->apprentice_start !== null;
+    }
 }

@@ -40,7 +40,8 @@ class ExtendedEditProfileForm extends EditProfileForm
                         Select::make('location_id')
                             ->label('Location')
                             ->options(Location::all()->pluck('name', 'id'))
-                            ->searchable(),
+                            ->searchable()
+                            ->native(false),
                             
                         DatePicker::make('apprentice_start')
                             ->label('Apprenticeship Start Date')

@@ -9,13 +9,13 @@ use App\Models\SubjectType;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use App\Filament\Resources\BaseResource;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class SubjectResource extends Resource
+class SubjectResource extends BaseResource
 {
     protected static ?string $model = Subject::class;
 

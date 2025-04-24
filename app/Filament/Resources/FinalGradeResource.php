@@ -9,12 +9,13 @@ use App\Models\Subject;
 use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use App\Filament\Resources\BaseResource;
 use Filament\Tables;
+use Illuminate\Database\Eloquent\Model;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 
-class FinalGradeResource extends Resource
+class FinalGradeResource extends BaseResource
 {
     protected static ?string $model = FinalGrade::class;
 
@@ -34,25 +35,39 @@ class FinalGradeResource extends Resource
                                     ->label('Student')
                                     ->options(User::all()->pluck('name', 'id'))
                                     ->searchable()
+                                    ->native(false)
                                     ->required(),
                                 Forms\Components\Select::make('subject_id')
                                     ->label('Subject')
                                     ->options(Subject::all()->pluck('name', 'id'))
                                     ->searchable()
+                                    ->native(false)
                                     ->required(),
                                 Forms\Components\Select::make('final_grade_type_id')
                                     ->label('Final Grade Type')
                                     ->options(FinalGradeType::all()->pluck('name', 'id'))
                                     ->searchable()
+                                    ->native(false)
                                     ->required(),
                             ]),
-                        Forms\Components\TextInput::make('grade')
-                            ->label('Grade')
-                            ->numeric()
-                            ->required()
-                            ->step(0.1)
-                            ->minValue(1.0)
-                            ->maxValue(6.0),
+                        Forms\Components\Grid::make(2)
+                            ->schema([
+                                Forms\Components\TextInput::make('grade')
+                                    ->label('Grade')
+                                    ->numeric()
+                                    ->required()
+                                    ->step(0.1)
+                                    ->minValue(1.0)
+                                    ->maxValue(6.0),
+                                Forms\Components\TextInput::make('weight')
+                                    ->label('Weight')
+                                    ->numeric()
+                                    ->required()
+                                    ->default(1.0)
+                                    ->step(0.1)
+                                    ->minValue(0.1)
+                                    ->maxValue(10),
+                            ]),
             ]);
     }
 
@@ -75,6 +90,9 @@ class FinalGradeResource extends Resource
                 Tables\Columns\TextColumn::make('grade')
                     ->numeric(1)
                     ->sortable(),
+                Tables\Columns\TextColumn::make('weight')
+                    ->numeric(1)
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -87,13 +105,16 @@ class FinalGradeResource extends Resource
             ->filters([
                 Tables\Filters\SelectFilter::make('user_id')
                     ->label('Student')
-                    ->options(User::all()->pluck('name', 'id')),
+                    ->options(User::all()->pluck('name', 'id'))
+                    ->native(false),
                 Tables\Filters\SelectFilter::make('subject_id')
                     ->label('Subject')
-                    ->options(Subject::all()->pluck('name', 'id')),
+                    ->options(Subject::all()->pluck('name', 'id'))
+                    ->native(false),
                 Tables\Filters\SelectFilter::make('final_grade_type_id')
                     ->label('Final Grade Type')
-                    ->options(FinalGradeType::all()->pluck('name', 'id')),
+                    ->options(FinalGradeType::all()->pluck('name', 'id'))
+                    ->native(false),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

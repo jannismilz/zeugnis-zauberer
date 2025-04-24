@@ -6,12 +6,12 @@ use App\Filament\Resources\LocationResource\Pages;
 use App\Models\Location;
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use App\Filament\Resources\BaseResource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 
-class LocationResource extends Resource
+class LocationResource extends BaseResource
 {
     protected static ?string $model = Location::class;
 

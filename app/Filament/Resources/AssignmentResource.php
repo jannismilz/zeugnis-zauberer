@@ -9,12 +9,13 @@ use App\Models\SchoolClass;
 use App\Models\Subject;
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use App\Filament\Resources\BaseResource;
 use Filament\Tables;
+use Illuminate\Database\Eloquent\Model;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 
-class AssignmentResource extends Resource
+class AssignmentResource extends BaseResource
 {
     protected static ?string $model = Assignment::class;
 
@@ -34,16 +35,19 @@ class AssignmentResource extends Resource
                                     ->label('School Class')
                                     ->options(SchoolClass::all()->pluck('name', 'id'))
                                     ->searchable()
+                                    ->native(false)
                                     ->required(),
                                 Forms\Components\Select::make('subject_id')
                                     ->label('Subject')
                                     ->options(Subject::all()->pluck('name', 'id'))
                                     ->searchable()
+                                    ->native(false)
                                     ->required(),
                                 Forms\Components\Select::make('assignment_type_id')
                                     ->label('Assignment Type')
                                     ->options(AssignmentType::all()->pluck('name', 'id'))
                                     ->searchable()
+                                    ->native(false)
                                     ->required(),
                             ]),
                         Forms\Components\Grid::make(2)
@@ -96,13 +100,16 @@ class AssignmentResource extends Resource
             ->filters([
                 Tables\Filters\SelectFilter::make('school_class_id')
                     ->label('School Class')
-                    ->options(SchoolClass::all()->pluck('name', 'id')),
+                    ->options(SchoolClass::all()->pluck('name', 'id'))
+                    ->native(false),
                 Tables\Filters\SelectFilter::make('subject_id')
                     ->label('Subject')
-                    ->options(Subject::all()->pluck('name', 'id')),
+                    ->options(Subject::all()->pluck('name', 'id'))
+                    ->native(false),
                 Tables\Filters\SelectFilter::make('assignment_type_id')
                     ->label('Assignment Type')
-                    ->options(AssignmentType::all()->pluck('name', 'id')),
+                    ->options(AssignmentType::all()->pluck('name', 'id'))
+                    ->native(false),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

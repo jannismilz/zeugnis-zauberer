@@ -12,6 +12,7 @@ class FinalGrade extends Model
         'subject_id',
         'final_grade_type_id',
         'grade',
+        'weight',
     ];
     
     public function user(): BelongsTo

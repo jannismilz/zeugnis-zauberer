@@ -8,12 +8,13 @@ use App\Models\Grade;
 use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use App\Filament\Resources\BaseResource;
 use Filament\Tables;
+use Illuminate\Database\Eloquent\Model;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 
-class GradeResource extends Resource
+class GradeResource extends BaseResource
 {
     protected static ?string $model = Grade::class;
 
@@ -33,11 +34,13 @@ class GradeResource extends Resource
                                     ->label('Student')
                                     ->options(User::all()->pluck('name', 'id'))
                                     ->searchable()
+                                    ->native(false)
                                     ->required(),
                                 Forms\Components\Select::make('assignment_id')
                                     ->label('Assignment')
                                     ->options(Assignment::all()->pluck('name', 'id'))
                                     ->searchable()
+                                    ->native(false)
                                     ->required(),
                             ]),
                         Forms\Components\TextInput::make('grade')
@@ -81,10 +84,12 @@ class GradeResource extends Resource
             ->filters([
                 Tables\Filters\SelectFilter::make('user_id')
                     ->label('Student')
-                    ->options(User::all()->pluck('name', 'id')),
+                    ->options(User::all()->pluck('name', 'id'))
+                    ->native(false),
                 Tables\Filters\SelectFilter::make('assignment_id')
                     ->label('Assignment')
-                    ->options(Assignment::all()->pluck('name', 'id')),
+                    ->options(Assignment::all()->pluck('name', 'id'))
+                    ->native(false),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
