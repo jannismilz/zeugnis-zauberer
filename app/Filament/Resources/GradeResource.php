@@ -21,6 +21,10 @@ class GradeResource extends BaseResource
     protected static ?string $navigationIcon = 'heroicon-o-document-check';
 
     protected static ?string $navigationGroup = 'Noten';
+    
+    protected static ?string $modelLabel = 'Note';
+    
+    protected static ?string $pluralModelLabel = 'Noten';
 
     protected static ?int $navigationSort = 20;
 

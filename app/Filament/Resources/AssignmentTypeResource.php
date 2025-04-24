@@ -19,6 +19,10 @@ class AssignmentTypeResource extends BaseResource
     protected static ?string $navigationLabel = 'Prüfungstypen';
     protected static ?string $navigationIcon = 'heroicon-o-clipboard-document-list';
     protected static ?string $navigationGroup = 'Parameter';
+    
+    protected static ?string $modelLabel = 'Prüfungstyp';
+    
+    protected static ?string $pluralModelLabel = 'Prüfungstypen';
 
     public static function form(Form $form): Form
     {

@@ -19,6 +19,10 @@ class SubjectTypeResource extends BaseResource
     protected static ?string $navigationIcon = 'heroicon-o-book-open';
     protected static ?string $navigationLabel = 'Fachtypen';
     protected static ?string $navigationGroup = 'Parameter';
+    
+    protected static ?string $modelLabel = 'Fachtyp';
+    
+    protected static ?string $pluralModelLabel = 'Fachtypen';
 
     public static function form(Form $form): Form
     {

@@ -19,6 +19,10 @@ class FinalGradeTypeResource extends BaseResource
     protected static ?string $navigationIcon = 'heroicon-o-trophy';
     protected static ?string $navigationLabel = 'Zeugnisnotentypen';
     protected static ?string $navigationGroup = 'Parameter';
+    
+    protected static ?string $modelLabel = 'Zeugnisnotentyp';
+    
+    protected static ?string $pluralModelLabel = 'Zeugnisnotentypen';
 
     public static function form(Form $form): Form
     {

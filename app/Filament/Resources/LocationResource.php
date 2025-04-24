@@ -20,6 +20,10 @@ class LocationResource extends BaseResource
     protected static ?string $navigationLabel = 'Standorte';
 
     protected static ?string $navigationGroup = 'Parameter';
+    
+    protected static ?string $modelLabel = 'Standort';
+    
+    protected static ?string $pluralModelLabel = 'Standorte';
 
     public static function form(Form $form): Form
     {

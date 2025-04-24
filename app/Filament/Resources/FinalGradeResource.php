@@ -24,6 +24,10 @@ class FinalGradeResource extends BaseResource
     protected static ?string $navigationLabel = 'Zeugnisnoten';
 
     protected static ?string $navigationGroup = 'Noten';
+    
+    protected static ?string $modelLabel = 'Zeugnisnote';
+    
+    protected static ?string $pluralModelLabel = 'Zeugnisnoten';
 
     protected static ?int $navigationSort = 30;
 

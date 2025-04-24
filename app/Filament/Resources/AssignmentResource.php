@@ -24,6 +24,10 @@ class AssignmentResource extends BaseResource
     protected static ?string $navigationLabel = 'Prüfungen';
 
     protected static ?string $navigationGroup = 'Noten';
+    
+    protected static ?string $modelLabel = 'Prüfung';
+    
+    protected static ?string $pluralModelLabel = 'Prüfungen';
 
     protected static ?int $navigationSort = 10;
 

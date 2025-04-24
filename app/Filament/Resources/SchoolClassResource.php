@@ -23,6 +23,10 @@ class SchoolClassResource extends BaseResource
     protected static ?string $navigationLabel = 'Schulklassen';
     protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
     protected static ?string $navigationGroup = 'Administration';
+    
+    protected static ?string $modelLabel = 'Schulklasse';
+    
+    protected static ?string $pluralModelLabel = 'Schulklassen';
 
     public static function form(Form $form): Form
     {
