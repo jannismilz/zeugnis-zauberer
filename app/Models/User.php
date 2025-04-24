@@ -43,7 +43,11 @@ class User extends Authenticatable implements FilamentUser
         return true;
     }
 
-    public function getApprenticeYearAttribute(): int {
+    public function getApprenticeYearAttribute(): int|null {
+        if (!$this->isApprentice()) {
+            return null;
+        }
+
         return $this->apprentice_start->diffInYears(Carbon::now()) + 1;
     }
     
