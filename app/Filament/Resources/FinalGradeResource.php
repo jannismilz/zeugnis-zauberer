@@ -18,7 +18,7 @@ class FinalGradeResource extends Resource
 {
     protected static ?string $model = FinalGrade::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-document-check';
+    protected static ?string $navigationIcon = 'heroicon-o-trophy';
 
     protected static ?string $navigationGroup = 'Grades';
 
