@@ -67,23 +67,23 @@ class DatabaseSeeder extends Seeder
         
         // Create school class types
         $schoolClassTypes = [
-            SchoolClassType::create(['name' => 'Informatiker EFZ']),
-            SchoolClassType::create(['name' => 'Kaufmann EFZ']),
-            SchoolClassType::create(['name' => 'Mediamatiker EFZ']),
+            SchoolClassType::create(['name' => 'BMS']),
+            SchoolClassType::create(['name' => 'Berufsschule']),
+            SchoolClassType::create(['name' => 'ABU']),
         ];
         
         // Create school classes
         $schoolClasses = [
             SchoolClass::create([
-                'name' => 'INF2022A',
+                'name' => '6MT22k',
                 'school_class_type_id' => $schoolClassTypes[0]->id
             ]),
             SchoolClass::create([
-                'name' => 'KV2023B',
+                'name' => '5IA22b',
                 'school_class_type_id' => $schoolClassTypes[1]->id
             ]),
             SchoolClass::create([
-                'name' => 'MMA2024C',
+                'name' => '5II22b',
                 'school_class_type_id' => $schoolClassTypes[2]->id
             ]),
         ];
