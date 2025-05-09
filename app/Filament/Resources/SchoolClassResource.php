@@ -33,7 +33,7 @@ class SchoolClassResource extends BaseResource
         return $form
             ->schema([
                 Select::make("school_class_type_id")
-                    ->label("School Class Type")
+                    ->label("Schulklassentypen")
                     ->options(SchoolClassType::all()->pluck("name", "id"))
                     ->native(false)
                     ->required(),
