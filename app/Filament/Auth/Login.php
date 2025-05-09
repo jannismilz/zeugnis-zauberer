@@ -12,13 +12,7 @@ class Login extends BaseLogin
 {
     public function authenticate(): ?LoginResponse
     {
-        try {
-            return parent::authenticate();
-        } catch (ValidationException) {
-            throw ValidationException::withMessages([
-                'data.login' => __('filament-panels::pages/auth/login.messages.failed'),
-            ]);
-        }
+        return parent::authenticate();
     }
 
     protected function getCredentialsFromFormData(array $data): array
